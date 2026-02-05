@@ -1,4 +1,4 @@
-{{ if .Values.argocd.randomLogger.enabled }}
+{{ if index .Values.argocd "random-logger" "enabled" }}
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
