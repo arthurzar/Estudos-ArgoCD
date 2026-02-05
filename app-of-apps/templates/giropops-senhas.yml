@@ -1,4 +1,4 @@
-{{ if index .Values.argocd "giropops-senhas" "enabled" }}
+{{ if .Values.argocd.giropopsSenhas.enabled }}
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
