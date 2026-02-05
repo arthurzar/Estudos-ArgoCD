@@ -21,12 +21,12 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true
   ignoreDifferences:
     - group: argoproj.io
       kind: Application
       jsonPointers:
+        - /metadata/labels
+        - /metadata/annotations
         - /status
         - /operation
-      jqPathExpressions:
-        - .metadata.labels
-        - .metadata.annotations
