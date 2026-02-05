@@ -8,7 +8,12 @@ metadata:
 spec:
   project: default
   source:
-    helm: {}
+    helm:
+      parameters:
+        - name: argocd.giropops-senhas.enabled
+          value: "true"
+        - name: argocd.random-logger.enabled
+          value: "true"
     repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
     targetRevision: feat/day2
     path: app-of-apps

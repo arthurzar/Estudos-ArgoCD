@@ -9,6 +9,10 @@ repository:
 
 # ArgoCD configuration
 argocd:
+  giropops-senhas:
+    enabled: false
+  random-logger:
+    enabled: false
   namespace: argocd
   project: default
 
