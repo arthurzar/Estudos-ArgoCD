@@ -14,6 +14,14 @@ spec:
       helm:
         valueFiles:
           - $values/grafana/values.yaml
-  repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
-  targetRevision: feat/day2
-  ref: values
+    - repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
+      targetRevision: feat/day2
+      ref: values
+  destination:
+    namespace: monitoring
+    server: "https://kubernetes.default.svc"
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
