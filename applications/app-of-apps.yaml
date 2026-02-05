@@ -27,3 +27,6 @@ spec:
       jsonPointers:
         - /status
         - /operation
+      jqPathExpressions:
+        - .metadata.labels
+        - .metadata.annotations
