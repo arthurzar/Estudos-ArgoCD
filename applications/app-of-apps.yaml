@@ -10,10 +10,10 @@ spec:
   source:
     helm:
       parameters:
-        - name: argocd.giropops-senhas.enabled
-          value: "true"
-        - name: argocd.random-logger.enabled
-          value: "true"
+        - name: argocd.giropopsSenhas.enabled
+          value: "false"
+        - name: argocd.randomLogger.enabled
+          value: "false"
     repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
     targetRevision: feat/day2
     path: app-of-apps
@@ -26,12 +26,5 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - RespectIgnoreDifferences=true
-  ignoreDifferences:
-    - group: argoproj.io
-      kind: Application
-      jsonPointers:
-        - /metadata/labels
-        - /metadata/annotations
-        - /status
-        - /operation
+      - PruneLast=true
+      - AllowEmpty=true
