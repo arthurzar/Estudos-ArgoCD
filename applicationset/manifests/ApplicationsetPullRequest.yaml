@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - pullRequest:
+        github:
+          owner: arthurzar
+          repo: Estudos-ArgoCD
+          tokenRef:
+            secretName: github-token
+            key: token
+        requeueAfterSeconds: 60
+  template:
+    metadata:
+      name: "stack-apps-{{.branch_slug}}-{{.number}}"
+    spec:
+      destination:
+        namespace: "app-ofapps-{{.branch_slug}}-{{.number}}"
+        server: "https://kubernetes.default.svc"
+      project: default
+      source:
+        path: app-ofapps/
+        repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
+        targetRevision: "{{.head_sha}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
