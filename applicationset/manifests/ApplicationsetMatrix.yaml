@@ -7,18 +7,19 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  matrix:
-    - git:
-        repoURL: https://github.com/arthurzar/Estudos-ArgoCD.git
-        revision: feat/day3
-        directories:
-          - path: applicationset/apps/*/helm
-    - git:
-        repoURL: https://github.com/arthurzar/Estudos-ArgoCD.git
-        revision: feat/day3
-        pathParamPrefix: cfg
-        files:
-          - path: applicationset/configs/dev.json
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/arthurzar/Estudos-ArgoCD.git
+              revision: feat/day3
+              directories:
+                - path: applicationset/apps/*/helm
+          - git:
+              repoURL: https://github.com/arthurzar/Estudos-ArgoCD.git
+              revision: feat/day3
+              pathParamPrefix: cfg
+              files:
+                - path: applicationset/configs/dev.json
   template:
     metadata:
       name: "{{index .path.segments 2}}-{{.cluster.name}}"
