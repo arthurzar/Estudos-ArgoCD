@@ -1,0 +1,33 @@
+nameOverride: argocd
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: argocd.bernardolopes.com
+    path: /
+
+configs:
+  params:
+    server.insecure: true
+  repositories:
+    apps-repo:
+      url: https://github.com/arthurzar/Estudos-ArgoCD.git
+      name: apps-repo
+      password: YOUR_GITHUB_TOKEN_HERE
+      username: token
+    infra-repo:
+      url: https://github.com/arthurzar/Estudos-ArgoCD.git
+      name: infra
+      password: YOUR_GITHUB_TOKEN_HERE
+      username: token
+
+applicationSet:
+  enabled: true
+  metrics:
+    enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: applicationset.bernardolopes.com
+    path: /

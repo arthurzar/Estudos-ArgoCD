@@ -1,24 +1,7 @@
-# values.yaml
-# Default values for app-of-apps
-# This file can be used to override default values in the application templates
-
-# Repository configuration
-repository:
-  url: "https://github.com/arthurzar/Estudos-ArgoCD.git"
-  targetRevision: feat/day2
-
-# ArgoCD configuration
+# test
 argocd:
   giropopsSenhas:
-    enabled: true
+    enabled: false
+    replicas: 5
   randomLogger:
-    enabled: true
-  namespace: argocd
-  project: default
-
-# Sync policy configuration
-syncPolicy:
-  automated:
-    selfHeal: true
-  syncOptions:
-    - CreateNamespace=true
+    enabled: false

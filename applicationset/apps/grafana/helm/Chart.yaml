@@ -1,9 +1,9 @@
-apiVersion: v2
+# Chart.yaml
+apiVersion: v2 #test
 name: grafana
 description: A Helm chart for grafana
-type: application
 version: 0.1.0
 dependencies:
   - name: grafana
-    version: 7.0.19
     repository: https://grafana.github.io/helm-charts
+    version: 7.0.19

@@ -5,32 +5,29 @@ metadata:
   namespace: argocd
 spec:
   goTemplate: true
-  goTemplateOptions:
-    - missingkey=error
+  goTemplateOptions: ["missingkey=error"]
   generators:
-    - pullRequest:
-        github:
-          owner: arthurzar
-          repo: Estudos-ArgoCD
-          tokenRef:
-            secretName: github-token
-            key: token
-        requeueAfterSeconds: 60
+  - pullRequest:
+      github: 
+        owner: bernardolsp
+        repo: descomplicando-gitops-no-kubernetes-argocd
+        tokenRef:
+          secretName: github-token
+          key: token
+      requeueAfterSeconds: 60
   template:
     metadata:
-      name: "stack-apps-{{.branch_slug}}-{{.number}}"
+      name: stack-apps-{{branch_slug}}-{{number}}
     spec:
-      destination:
-        namespace: "app-ofapps-{{.branch_slug}}-{{.number}}"
-        server: "https://kubernetes.default.svc"
-      project: default
+      project: "default"
       source:
-        path: app-ofapps/
-        repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
-        targetRevision: "{{.head_sha}}"
+        repoURL: https://github.com/bernardolsp/descomplicando-gitops-no-kubernetes-argocd.git
+        targetRevision: '{{head_sha}}'
+        path: app-of-apps/
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'app-of-apps-{{branch_slug}}-{{number}}'
       syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
+        automated: {}
         syncOptions:
-          - CreateNamespace=true
+        - CreateNamespace=true
