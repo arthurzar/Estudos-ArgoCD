@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
+    repoURL: https://github.com/arthurzar/Estudos-ArgoCD.git
     targetRevision: feat/day2
     path: app-of-apps-monitoring
     helm:
@@ -16,14 +16,14 @@ spec:
         - name: argocd.prometheus.enabled
           value: "true"
         - name: argocd.prometheus.ingress
-          value: "prometheus.bernardolopes.com"
+          value: prometheus.bernardolopes.com
         - name: argocd.grafana.enabled
           value: "true"
         - name: argocd.grafana.ingress
-          value: "grafana.bernardolopes.com"
+          value: grafana.bernardolopes.com
   destination:
     namespace: argocd-prd
-    server: "https://kubernetes.default.svc"
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: true
