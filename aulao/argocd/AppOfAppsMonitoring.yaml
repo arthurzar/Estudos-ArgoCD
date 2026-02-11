@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/arthurzar/Estudos-ArgoCD.git
-    targetRevision: feat/day2
+    targetRevision: feat/day3
     path: app-of-apps-monitoring
     helm:
       valueFiles:
