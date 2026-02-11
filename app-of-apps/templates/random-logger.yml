@@ -1,0 +1,28 @@
+{{ if .Values.argocd.randomLogger.enabled }}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    app.kubernetes.io/instance: app-of-apps
+  name: random-logger
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    helm: {}
+    repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
+    targetRevision: feat/day2
+    path: random-logger/helm
+  destination:
+    namespace: random-logger
+    server: "https://kubernetes.default.svc"
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+{{ end }}

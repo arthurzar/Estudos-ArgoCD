@@ -1,0 +1,28 @@
+{{ if .Values.argocd.giropopsSenhas.enabled }}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    app.kubernetes.io/instance: app-of-apps
+  name: giropops-senhas
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    helm: {}
+    repoURL: "https://github.com/arthurzar/Estudos-ArgoCD.git"
+    targetRevision: feat/day2
+    path: giropops-senhas/helm
+  destination:
+    namespace: giropops-senhas
+    server: "https://kubernetes.default.svc"
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+{{ end }}
